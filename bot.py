@@ -26,6 +26,23 @@ async def on_ready():
 async def hello(ctx):
     await ctx.send('こんにちは！')
 
+@bot.event
+async def on_message(message):
+    # ボット自身のメッセージは無視
+    if message.author == bot.user:
+        return
+
+    # 特定の文字列に反応
+    if 'こんにちは' in message.content:
+        await message.channel.send('こんにちは！')
+    elif 'おはよう' in message.content:
+        await message.channel.send('おはようございます！')
+    elif '疲れた' in message.content:
+        await message.channel.send('お疲れ様です！')
+
+    # コマンドの処理を可能にする
+    await bot.process_commands(message)
+
 # 環境変数からトークンを取得して実行
 TOKEN = os.getenv('DISCORD_TOKEN')
 if TOKEN is None:
