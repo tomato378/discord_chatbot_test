@@ -245,7 +245,7 @@ async def on_message(message):
     # -------------------------------
     # その他キーワード応答
     # -------------------------------
-    if '予定' in content and content != '予定追加':
+    if '予定' in content and content not in ('予定追加','予定確認'):
         await message.channel.send('例: cal: 2025-10-25 15:00 | 60 | ミーティング | プロジェクト進捗確認')
     elif 'おはよう' in content:
         await message.channel.send('おはようございます！')
